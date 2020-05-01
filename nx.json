@@ -31,6 +31,32 @@
     },
     "api-interfaces": {
       "tags": []
+    },
+    "data": {
+      "tags": []
+    },
+    "ng-reactive-forms": {
+      "tags": []
+    },
+    "ng-reactive-forms-e2e": {
+      "tags": [],
+      "implicitDependencies": ["ng-reactive-forms"]
+    },
+    "ng-rxjs-forms": {
+      "tags": []
+    },
+    "ng-rxjs-forms-e2e": {
+      "tags": [],
+      "implicitDependencies": ["ng-rxjs-forms"]
+    },
+    "validators": {
+      "tags": []
+    },
+    "ui": {
+      "tags": []
+    },
+    "validation": {
+      "tags": []
     }
   }
 }

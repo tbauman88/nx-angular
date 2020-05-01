@@ -205,6 +205,379 @@
           }
         }
       }
+    },
+    "data": {
+      "root": "libs/data",
+      "sourceRoot": "libs/data/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/data/tsconfig.lib.json",
+              "libs/data/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/data/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/data/jest.config.js",
+            "tsConfig": "libs/data/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "ng-reactive-forms": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:interceptor": {
+          "skipTests": true
+        },
+        "@nrwl/angular:class": {
+          "skipTests": true
+        },
+        "@nrwl/angular:component": {
+          "style": "scss",
+          "skipTests": true
+        },
+        "@nrwl/angular:directive": {
+          "skipTests": true
+        },
+        "@nrwl/angular:guard": {
+          "skipTests": true
+        },
+        "@nrwl/angular:module": {
+          "skipTests": true
+        },
+        "@nrwl/angular:pipe": {
+          "skipTests": true
+        },
+        "@nrwl/angular:service": {
+          "skipTests": true
+        }
+      },
+      "root": "apps/ng-reactive-forms",
+      "sourceRoot": "apps/ng-reactive-forms/src",
+      "prefix": "nx-angular",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/ng-reactive-forms",
+            "index": "apps/ng-reactive-forms/src/index.html",
+            "main": "apps/ng-reactive-forms/src/main.ts",
+            "polyfills": "apps/ng-reactive-forms/src/polyfills.ts",
+            "tsConfig": "apps/ng-reactive-forms/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "apps/ng-reactive-forms/src/favicon.ico",
+              "apps/ng-reactive-forms/src/assets"
+            ],
+            "styles": ["apps/ng-reactive-forms/src/styles.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/ng-reactive-forms/src/environments/environment.ts",
+                  "with": "apps/ng-reactive-forms/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "ng-reactive-forms:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "ng-reactive-forms:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "ng-reactive-forms:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/ng-reactive-forms/tsconfig.app.json",
+              "apps/ng-reactive-forms/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!apps/ng-reactive-forms/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/ng-reactive-forms/jest.config.js",
+            "tsConfig": "apps/ng-reactive-forms/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "apps/ng-reactive-forms/src/test-setup.ts"
+          }
+        }
+      }
+    },
+    "ng-reactive-forms-e2e": {
+      "root": "apps/ng-reactive-forms-e2e",
+      "sourceRoot": "apps/ng-reactive-forms-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/ng-reactive-forms-e2e/cypress.json",
+            "tsConfig": "apps/ng-reactive-forms-e2e/tsconfig.e2e.json",
+            "devServerTarget": "ng-reactive-forms:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "ng-reactive-forms:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["apps/ng-reactive-forms-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/ng-reactive-forms-e2e/**"]
+          }
+        }
+      }
+    },
+    "ng-rxjs-forms": {
+      "projectType": "application",
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "apps/ng-rxjs-forms",
+      "sourceRoot": "apps/ng-rxjs-forms/src",
+      "prefix": "rxjs-forms",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/ng-rxjs-forms",
+            "index": "apps/ng-rxjs-forms/src/index.html",
+            "main": "apps/ng-rxjs-forms/src/main.ts",
+            "polyfills": "apps/ng-rxjs-forms/src/polyfills.ts",
+            "tsConfig": "apps/ng-rxjs-forms/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "apps/ng-rxjs-forms/src/favicon.ico",
+              "apps/ng-rxjs-forms/src/assets"
+            ],
+            "styles": ["apps/ng-rxjs-forms/src/styles.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/ng-rxjs-forms/src/environments/environment.ts",
+                  "with": "apps/ng-rxjs-forms/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "ng-rxjs-forms:build",
+            "proxyConfig": "apps/ng-rxjs-forms/proxy.conf.json"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "ng-rxjs-forms:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "ng-rxjs-forms:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/ng-rxjs-forms/tsconfig.app.json",
+              "apps/ng-rxjs-forms/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!apps/ng-rxjs-forms/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/ng-rxjs-forms/jest.config.js",
+            "tsConfig": "apps/ng-rxjs-forms/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "apps/ng-rxjs-forms/src/test-setup.ts"
+          }
+        }
+      }
+    },
+    "ng-rxjs-forms-e2e": {
+      "root": "apps/ng-rxjs-forms-e2e",
+      "sourceRoot": "apps/ng-rxjs-forms-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/ng-rxjs-forms-e2e/cypress.json",
+            "tsConfig": "apps/ng-rxjs-forms-e2e/tsconfig.e2e.json",
+            "devServerTarget": "ng-rxjs-forms:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "ng-rxjs-forms:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["apps/ng-rxjs-forms-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/ng-rxjs-forms-e2e/**"]
+          }
+        }
+      }
+    },
+    "validators": {
+      "root": "libs/validators",
+      "sourceRoot": "libs/validators/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/validators/tsconfig.lib.json",
+              "libs/validators/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/validators/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/validators/jest.config.js",
+            "tsConfig": "libs/validators/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "ui": {
+      "root": "libs/ui",
+      "sourceRoot": "libs/ui/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/ui/tsconfig.lib.json",
+              "libs/ui/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/ui/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/ui/jest.config.js",
+            "tsConfig": "libs/ui/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "validation": {
+      "root": "libs/validation",
+      "sourceRoot": "libs/validation/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/validation/tsconfig.lib.json",
+              "libs/validation/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/validation/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/validation/jest.config.js",
+            "tsConfig": "libs/validation/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   },
   "cli": {

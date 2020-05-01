@@ -16,7 +16,11 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@nx-angular/api-interfaces": ["libs/api-interfaces/src/index.ts"]
+      "@nx-angular/api-interfaces": ["libs/api-interfaces/src/index.ts"],
+      "@nx-angular/data": ["libs/data/src/index.ts"],
+      "@nx-angular/validators": ["libs/validators/src/index.ts"],
+      "@nx-angular/ui": ["libs/ui/src/index.ts"],
+      "@nx-angular/validation": ["libs/validation/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
